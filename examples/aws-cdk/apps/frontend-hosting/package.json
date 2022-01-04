@@ -1,0 +1,33 @@
+{
+  "name": "frontend-hosting",
+  "version": "0.0.0",
+  "bin": {
+    "frontend-hosting": "bin/frontend-hosting.js"
+  },
+  "scripts": {
+    "synthFrontendHosting": "tsc && cdk synth",
+    "dev": "tsc -w",
+    "test": "jest",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf cdk.out",
+    "cdk" : "cdk",
+    "bootstrap": "cdk bootstrap",
+    "deployFrontendHosting": "cdk deploy --require-approval never",
+    "destroy": "cdk destroy --require-approval never --force"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "2.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.2.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.16",
+    "frontend" : "*",
+    "configuration" : "*"
+  }
+}

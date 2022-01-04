@@ -1,0 +1,89 @@
+{
+  "name": "turborepo-aws-cdk",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "bootstrap" : "turbo run bootstrap",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "deploy": "turbo run deployFrontendHosting",
+    "destroy": "turbo run destroy",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "graph" :  "turbo run deployFrontendHosting --graph"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  },
+  "turbo": {
+    "npmClient" : "npm",
+    "pipeline": {
+      "clean": {
+        "outputs": [],
+        "cache": false
+      },
+      "lint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      },
+      "bootstrap" : {
+        "dependsOn": []
+      },
+      "build" : {
+        "dependsOn": ["^build"]
+      },
+      "synthBackend": {
+        "dependsOn": [
+          "build"
+        ],
+        "outputs": [
+          "cdk.out/**"
+        ]
+      },
+      "deployBackend" : {
+        "dependsOn" : [
+          "synthBackend"
+        ],
+        "cache": false
+      },
+      "copyBackendConfiguration" : {
+        "dependsOn" : [
+          "^deployBackend"
+        ]
+      },
+      "buildFrontend" : {
+        "dependsOn" : [
+          "copyBackendConfiguration"
+        ],
+        "outputs": [
+          "dist/**"
+        ]
+      },
+      "synthFrontendHosting" : {
+        "dependsOn" : [
+          "^buildFrontend"
+        ],
+        "outputs": [
+          "cdk.out/**"
+        ]
+      },
+      "deployFrontendHosting" : {
+        "dependsOn" : [
+          "synthFrontendHosting"
+        ],
+        "cache": false
+      },
+      "destroy" : {
+
+      }
+    }
+  }
+}

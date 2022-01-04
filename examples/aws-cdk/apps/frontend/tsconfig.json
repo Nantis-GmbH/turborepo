@@ -1,0 +1,9 @@
+{
+  "exclude": ["node_modules"],
+  "extends": "configuration/vite.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "resolveJsonModule": true
+  },
+  "files": ["src", "aws-config.json"]
+}

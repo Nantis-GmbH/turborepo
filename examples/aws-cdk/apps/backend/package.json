@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "backend": "bin/backend.js"
+  },
+  "scripts": {
+    "synthBackend": "tsc && cdk synth",
+    "dev": "tsc -w",
+    "test": "jest",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf cdk.out",
+    "bootstrap": "cdk bootstrap",
+    "deployBackend": "cdk deploy --require-approval never",
+    "destroy": "cdk destroy --require-approval never --force"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.2.0",
+    "@aws-cdk/aws-apigatewayv2-alpha" : "^2.2.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha" : "^2.2.0-alpha.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.16"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "@types/aws-lambda" : "^8.10.88",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "2.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7",
+    "esbuild" : "^0.14.6",
+    "configuration": "*"
+  }
+}
